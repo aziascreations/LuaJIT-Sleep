@@ -2,8 +2,8 @@ name: Packaging Lua
 
 on:
   push:
-  #  branches:
-  #    - master
+    branches:
+      - master
   pull_request:
   workflow_dispatch:
 
@@ -42,7 +42,7 @@ jobs:
 
       - name: Upload artifact (socket.7z)
         uses: actions/upload-artifact@v4
-        #if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         with:
           name: LuaJIT-Sleep
           path: build/
