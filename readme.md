@@ -1,8 +1,8 @@
 # LuaJIT - Sleep
 Pure LuaJIT bindings and wrappers for native sleep functions on Win32 and Linux.
 
-**📢 This is library is in low maintenance mode** \
-I consider it feature-complete, and unless a bug is found, I don't plan on updating it.
+> **📢 This is library is in low maintenance mode** \
+  I consider it feature-complete, and unless a bug is found, I don't plan on updating it.
 
 
 ## Features
