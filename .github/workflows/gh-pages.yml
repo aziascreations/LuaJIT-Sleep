@@ -12,7 +12,6 @@ concurrency:
 
 jobs:
   run:
-    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
