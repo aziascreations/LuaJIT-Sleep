@@ -26,6 +26,10 @@ jobs:
         uses: lunarmodules/ldoc@v1.5.0
         with:
           args: .
+
+      - name: Copying files
+        run: |
+          cp LICENSE build/doc/topics/LICENSE
       
       - name: Deploy documentation to gh-pages
         uses: peaceiris/actions-gh-pages@v4

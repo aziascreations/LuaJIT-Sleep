@@ -38,6 +38,7 @@ jobs:
           cp LICENSE build/LICENSE
           cp demo.lua build/demo.lua
           cp -R doc/ build/doc/
+          cp LICENSE build/doc/topics/LICENSE
 
       - name: Upload artifact (socket.7z)
         uses: actions/upload-artifact@v4
