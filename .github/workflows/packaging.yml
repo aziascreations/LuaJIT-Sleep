@@ -2,8 +2,8 @@ name: Packaging Lua
 
 on:
   push:
-  #  branches:
-  #    - master
+    branches:
+      - master
   pull_request:
   workflow_dispatch:
 
@@ -13,7 +13,6 @@ concurrency:
 
 jobs:
   run:
-    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -26,19 +25,26 @@ jobs:
 
       - name: Preparing build directory
         run: |
-          mkdir -p build/lua
+          mkdir -p build/lua/doc
+
+      - name: Build LDoc documentation
+        uses: lunarmodules/ldoc@v1.5.0
+        with:
+          args: .
 
       - name: Copying files
         run: |
           cp readme.md build/readme.md
           cp LICENSE build/LICENSE
-          cp lua/*.lua build/lua/
+          cp demo.lua build/demo.lua
+          cp -R doc/ build/doc/
+          cp LICENSE build/doc/topics/LICENSE
 
       - name: Upload artifact (socket.7z)
         uses: actions/upload-artifact@v4
-        #if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         with:
-          name: sleep.7z
+          name: LuaJIT-Sleep
           path: build/
           compression-level: 0
           retention-days: 30
