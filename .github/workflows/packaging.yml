@@ -1,0 +1,44 @@
+name: Packaging Lua
+
+on:
+  push:
+  #  branches:
+  #    - master
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: packaging-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  run:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Git submodules
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Preparing build directory
+        run: |
+          mkdir -p build/lua
+
+      - name: Copying files
+        run: |
+          cp readme.md build/readme.md
+          cp LICENSE build/LICENSE
+          cp lua/*.lua build/lua/
+
+      - name: Upload artifact (socket.7z)
+        uses: actions/upload-artifact@v4
+        #if: ${{ github.ref == 'refs/heads/master' }}
+        with:
+          name: sleep.7z
+          path: build/
+          compression-level: 0
+          retention-days: 30

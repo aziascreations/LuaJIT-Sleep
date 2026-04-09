@@ -1,0 +1,25 @@
+# IDEs
+.vs/
+.idea/
+vs/
+
+# Runtimes
+bin/
+lua.exe
+luajit.exe
+lua51.dll
+lua/jit/
+
+# Tools
+scripts/luapack.lua
+
+# Trash
+*.pb.cfg
+*.pbi.cfg
+*.pbf.cfg
+*.exe
+
+# Build artifacts
+*.packed.lua
+*.lua.bin
+*.lua.raw
