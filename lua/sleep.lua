@@ -5,7 +5,7 @@
 -- @license CC0 1.0 Universal (CC0 1.0) (Public Domain)
 -- @copyright 2026
 --
--- @release 1.0.0
+-- @release 2.0.0
 
 
 -- Setup
@@ -85,6 +85,7 @@ end
 --- Sleeps for a given amount of milliseconds and returns. \
 --- May be interrupted by the OS.
 --- @param milliseconds number Amount of milliseconds to sleep.
+--- @return nil
 function M.sleep_ms(milliseconds)
     if milliseconds < 0 then
         if M.ignore_errors then
@@ -110,11 +111,14 @@ function M.sleep_ms(milliseconds)
     else
         error("Library must be used on Win32 or Linux platforms ! (os: " .. ffi.os .. ")")
     end
+
+    return nil
 end
 
 --- Sleeps for a given amount of seconds and returns. \
 --- May be interrupted by the OS.
 --- @param seconds number Amount of seconds to sleep.
+--- @return nil
 function M.sleep_s(seconds)
     return M.sleep_ms(seconds * 1000)
 end
