@@ -16,6 +16,6 @@ dependencies = {
 build = {
    type = "builtin",
    modules = {
-      sleep = "sleep.lua"
+      sleep = "lua/sleep.lua"
    },
 }
