@@ -2,7 +2,7 @@ name: Build & Upload Rockspec
 
 on:
   push:
-  #  branches: master
+    branches: master
   workflow_dispatch:
 
 concurrency:
@@ -21,13 +21,6 @@ jobs:
           submodules: true
           fetch-depth: 0
 
-      - name: Delete files
-        run: |
-          rm -rf .github/
-          rm -rf lua/jit/
-          rm -f .gitignore
-          rm -f demo.lua
-
       - name: Install LuaRocks & build
         run: |
           sudo apt-get install -y luarocks
@@ -35,7 +28,7 @@ jobs:
 
       - name: Upload rock artifact
         uses: actions/upload-artifact@v4
-        #if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         with:
           name: rockspec-artifact
           path: "*.rock"
