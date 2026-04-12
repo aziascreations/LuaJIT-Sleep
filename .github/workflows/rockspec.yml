@@ -2,7 +2,7 @@ name: Build & Upload Rockspec
 
 on:
   push:
-    branches: master
+  pull_request:
   workflow_dispatch:
 
 concurrency:
@@ -24,7 +24,7 @@ jobs:
       - name: Install LuaRocks & build
         run: |
           sudo apt-get install -y luarocks
-          luarocks pack sleep-2.0.0-1.rockspec
+          luarocks pack np-sleep-2.0.0-1.rockspec
 
       - name: Upload rock artifact
         uses: actions/upload-artifact@v4
