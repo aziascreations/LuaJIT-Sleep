@@ -1,0 +1,43 @@
+name: Build & Upload Rockspec
+
+on:
+  push:
+  #  branches: master
+  workflow_dispatch:
+
+concurrency:
+  group: rockspec-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Git submodules
+        uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-depth: 0
+
+      - name: Delete files
+        run: |
+          rm -rf .github/
+          rm -rf lua/jit/
+          rm -f .gitignore
+          rm -f demo.lua
+
+      - name: Install LuaRocks & build
+        run: |
+          sudo apt-get install -y luarocks
+          luarocks pack sleep-1.0.0-1.rockspec
+
+      - name: Upload rock artifact
+        uses: actions/upload-artifact@v4
+        #if: ${{ github.ref == 'refs/heads/master' }}
+        with:
+          name: rockspec-artifact
+          path: "*.rock"
+          compression-level: 0
+          retention-days: 30
