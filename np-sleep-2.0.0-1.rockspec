@@ -1,4 +1,4 @@
-package = "sleep"
+package = "np-sleep"
 version = "2.0.0-1"
 source = {
    url = "https://github.com/aziascreations/LuaJIT-Sleep/archive/refs/tags/v2.0.0.tar.gz",
